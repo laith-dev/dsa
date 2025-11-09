@@ -38,3 +38,30 @@ class Solution1:
         counts = Counter(nums)
         counts_sorted = sorted(counts, key=lambda num: counts[num], reverse=True)
         return counts_sorted[:k]
+
+
+class Solution2:
+    def top_k_frequent(self, nums: list[int], k: int) -> list[int]:
+        """
+        Using bucket sort.
+
+        Complexity:
+        - Time: O(n).
+        - Space: O(n).
+        """
+
+        counts = Counter(nums)
+
+        n = len(nums)
+        buckets = [[] for _ in range(n + 1)]
+        for num, count in counts.items():
+            buckets[count].append(num)
+
+        top_k = []
+        for i in range(len(buckets) - 1, 0, -1):  # bucket with index 0 is always empty
+            for num in buckets[i]:
+                top_k.append(num)
+                if len(top_k) == k:
+                    return top_k
+
+        return top_k
