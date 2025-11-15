@@ -16,6 +16,7 @@ Output: false
 1 <= s.length, t.length <= 5 * 10 ** 4
 s and t consist of lowercase English letters.
 """
+from collections import Counter
 
 
 class Solution1:
@@ -29,3 +30,27 @@ class Solution1:
 
     def is_anagram(self, s: str, t: str) -> bool:
         return sorted(s) == sorted(t)
+
+
+class Solution2:
+    """
+    Using hash tables; count each character in `s` then for each character in `t`, if it
+    doesn't exist in `s` or its count is 0, then they are not anagrams.
+
+    Complexity:
+        - Time:  O(n)
+        - Space: O(k), where k is the number of unique characters in `s`.
+    """
+
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+
+        s_counter = Counter(s)
+
+        for char in t:
+            if char not in s_counter or s_counter[char] == 0:
+                return False
+            s_counter[char] -= 1
+
+        return True
