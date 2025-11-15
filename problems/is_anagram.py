@@ -16,6 +16,7 @@ Output: false
 1 <= s.length, t.length <= 5 * 10 ** 4
 s and t consist of lowercase English letters.
 """
+
 from collections import Counter
 
 
@@ -24,8 +25,8 @@ class Solution1:
     Brute force; compare the sorted version of each string.
 
     Complexity:
-        - Time:  O(nlogn + mlogm) where n and m are the lengths of s and t respectively.
-        - Space: O(n + m) where n and m are the lengths of s and t respectively.
+    - Time:  O(nlogn + mlogm) where n and m are the lengths of s and t respectively.
+    - Space: O(n + m) where n and m are the lengths of s and t respectively.
     """
 
     def is_anagram(self, s: str, t: str) -> bool:
@@ -38,8 +39,8 @@ class Solution2:
     doesn't exist in `s` or its count is 0, then they are not anagrams.
 
     Complexity:
-        - Time:  O(n)
-        - Space: O(k), where k is the number of unique characters in `s`.
+    - Time:  O(n)
+    - Space: O(k), where k is the number of unique characters in `s`.
     """
 
     def isAnagram(self, s: str, t: str) -> bool:

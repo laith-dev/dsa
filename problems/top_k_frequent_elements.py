@@ -41,19 +41,20 @@ class Solution1:
 
 
 class Solution2:
+    """
+    Using bucket sort.
+
+    Complexity:
+    - Time:  O(n).
+    - Space: O(n).
+    """
+
     def top_k_frequent(self, nums: list[int], k: int) -> list[int]:
-        """
-        Using bucket sort.
-
-        Complexity:
-        - Time:  O(n).
-        - Space: O(n).
-        """
-
-        counts = Counter(nums)
 
         n = len(nums)
         buckets = [[] for _ in range(n + 1)]
+
+        counts = Counter(nums)
         for num, count in counts.items():
             buckets[count].append(num)
 
@@ -65,3 +66,4 @@ class Solution2:
                     return top_k
 
         return top_k
+

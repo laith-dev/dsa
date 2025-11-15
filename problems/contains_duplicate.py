@@ -41,8 +41,8 @@ class Solution2:
     consecutive numbers.
 
     Complexity:
-        - Time: Python uses `Tim` sort algorithm, hence, it's O(nlogn)
-        - Space: O(n).
+    - Time: Python uses `Tim` sort algorithm, hence, it's O(nlogn)
+    - Space: O(n).
     """
 
     def has_duplicate(self, nums: list[int]) -> bool:
@@ -58,8 +58,8 @@ class Solution3:
     Using a hash set; convert the list into a set and compare lengths.
 
     Complexity:
-        - Time:  O(n).
-        - Space: O(n).
+    - Time:  O(n).
+    - Space: O(n).
     """
 
     def hasDuplicate(self, nums: list[int]) -> bool:
@@ -72,8 +72,8 @@ class Solution4:
     has already been seen.
 
     Complexity:
-        - Time:  O(n).
-        - Space: O(n).
+    - Time:  O(n).
+    - Space: O(n).
     """
 
     def hasDuplicate(self, nums: list[int]) -> bool:
