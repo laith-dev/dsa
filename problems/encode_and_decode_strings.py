@@ -76,3 +76,44 @@ class Solution3:
             strings.append(s[start:start + s_len])
             start += s_len
         return strings
+
+
+class Solution4:
+    """
+    Store the length of each substring in the encoded string.
+    For example:
+    ["Laith", "Awni"] ---encode--> "5#Laith4#Awni".
+
+    Complexity:
+    - Time:  O(m) for both encode() and decode().
+    - Space: O(m + n), for both encode() and decode().
+    Where m is the total number of characters in all strings and n is
+    the number of strings.
+    """
+
+    DELIMITER = '#'
+
+    def encode(self, strs: list[str]) -> str:
+        for i in range(len(strs)):
+            strs[i] = str(len(strs[i])) + self.DELIMITER + strs[i]
+        return "".join(strs)
+
+    def decode(self, s: str) -> list[str]:
+        decoded = []
+
+        i = 0
+        while i < len(s):
+            j = i
+            while s[j] != self.DELIMITER:
+                j += 1
+
+            str_len = int(s[i:j])
+
+            j += 1  # skip the `DELIMITER`
+            end = j + str_len
+            decoded.append(s[j:end])
+
+            # Next string starts where the current ends.
+            i = end
+
+        return decoded
