@@ -42,3 +42,37 @@ class Solution2:
         if not s and self.strs_len > 0:
             return [''] * self.strs_len
         return s.split(self.SEPARATOR) if s else []
+
+
+class Solution3:
+    """
+    Store the length of each substring in an instance attribute while encoding.
+    In the decoding operation, re-create substrings from the given string
+    based on the `lengths` instance attribute.
+    """
+
+    def encode(self, strs: list[str]) -> str:
+        """
+        Complexity:
+        - Time:  O(n), where n is the total characters across all strings.
+        - Space: O(m), where m is the number of substrings.
+        """
+
+        # In practice, this is considered bad practice since we are
+        # defining an instance attribute outside the constructor.
+        self.lengths = [len(s) for s in strs]
+        return "".join(strs)
+
+    def decode(self, s: str) -> list[str]:
+        """
+        Complexity:
+        - Time:  O(n), where n is the total characters across all strings.
+        - Space: O(n), where n is the total characters across all strings.
+        """
+
+        strings: list[str] = []
+        start = 0
+        for s_len in self.lengths:
+            strings.append(s[start:start + s_len])
+            start += s_len
+        return strings
