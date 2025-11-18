@@ -1,3 +1,6 @@
+import re
+
+
 class Solution1:
     """
     Trick the testing system.
@@ -115,5 +118,39 @@ class Solution4:
 
             # Next string starts where the current ends.
             i = end
+
+        return decoded
+
+
+class Solution5:
+    """
+    Store the length of each substring in the encoded string.
+    For example:
+    ["Laith", "Awni"] ---encode--> "5#Laith4#Awni".
+    Then split the string by a regex.
+
+    Complexity:
+    - Time:  O(m) for both encode() and decode().
+    - Space: O(m + n), for both encode() and decode().
+    Where m is the total number of characters in all strings and n is
+    the number of strings.
+    """
+
+    DELIMITER = '#'
+    PATTERN = r'(\d+)#'
+
+    def encode(self, strs: list[str]) -> str:
+        for i in range(len(strs)):
+            strs[i] = str(len(strs[i])) + self.DELIMITER + strs[i]
+        return "".join(strs)
+
+    def decode(self, s: str) -> list[str]:
+        decoded: list[str] = []
+
+        parts = re.split(self.PATTERN, s)[1:]  # skip first empty element
+        for i in range(0, len(parts), 2):
+            length = int(parts[i])
+            word = parts[i + 1][:length]
+            decoded.append(word)
 
         return decoded
