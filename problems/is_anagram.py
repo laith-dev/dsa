@@ -55,3 +55,8 @@ class Solution2:
             s_counter[char] -= 1
 
         return True
+
+
+class Solution3:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return Counter(s) == Counter(t)
