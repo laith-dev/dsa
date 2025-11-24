@@ -58,3 +58,30 @@ class Solution1:
             longest = temp
 
         return len(longest)
+
+
+class Solution2:
+    """
+    Complexity:
+    - Time:  O(n ** 2)
+    - Space: O(n)
+    """
+
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        longest = ''
+        temp = ''
+        for index in range(len(s)):
+            for sub_index in range(index, len(s)):
+                char = s[sub_index]
+                if char not in temp:
+                    temp += char
+                else:
+                    if len(temp) > len(longest):
+                        longest = temp
+                    temp = ''
+                    break
+
+        if not longest:
+            longest = temp
+
+        return len(longest)
